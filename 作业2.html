@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        function fun1(n1){ //定义函数fun1
+            for (let i = 1; i <= n1; i++) { //行数
+                for (let j = 1; j <= n1 - i; j++) { //前面的空格
+                    document.write("&nbsp;");
+                }
+                for (let k = 1; k <= i; k++) { //每一行*的数量
+                    document.write("&nbsp;*");
+                }
+                document.write("<br>");
+            }
+        }
+        
+        function fun2(n2){
+            for (let i = 1; i <= n2; i++) {
+                for (let j = 1; j <= n2 - i; j++) {
+                    document.write("&nbsp;&nbsp;");
+                }
+                for (let k = 1; k <= n2; k++) {
+                    document.write("&nbsp;*");
+                }
+                document.write("<br>");
+            }
+        }
+        
+        function fun3(n3){
+            var n = Math.floor(n3/2);
+            for (let i = 1; i <= (n+1); i++) {
+                for (let j = 1; j <= (n+1) - i; j++) {
+                    document.write("&nbsp;&nbsp;"); //前面的空格
+                }
+                for (let k = 1; k <= i*2-1; k++) {
+                    document.write("&nbsp;*"); //每行*的数量
+                }
+                document.write("<br>");
+            }
+
+            for (let i = n; i >= 1; i--) {
+                for (let j = 1; j <= (n+1) - i; j++) {
+                    document.write("&nbsp;&nbsp;&nbsp;");
+                }
+                for (let k = 1; k <= i*2-1; k++) {
+                    document.write("&nbsp;*");
+                }
+                document.write("<br>");
+            }
+        }
+        
+
+        var n1 = prompt("请输入三角形的行数："); //输入行数
+        var n2 = prompt("请输入平行四边形的行数："); //输入行数
+        var n3 = prompt("请输入菱形的行数（奇数行）："); //输入行数
+
+        document.write("三角形：<br>");
+        fun1(n1); //调用函数
+        document.write("平行四边形：<br>");
+        fun2(n2);
+        document.write("菱形：<br>");
+        fun3(n3);
+    </script>
+</body>
+</html>

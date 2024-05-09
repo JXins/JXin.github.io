@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>广告页面</title>
+    <style>
+        body{
+            margin: 0;
+        }
+
+        /* 广告横幅样式 */
+        .adBanner {
+            position: fixed;
+            top: 0;
+            width: 120px;
+            height: 200px;
+            z-index: 999;
+        }
+        #leftAd {
+            left: 0;
+        }
+
+        #rightAd {
+            right: 0;
+        }
+
+        #popupAd {
+            position: fixed;
+            opacity: 0; /* 初始时隐藏在屏幕下方 */
+            bottom: 30px;
+            right: 0;
+            width: 200px;
+            height: 300px;
+            border: 2px solid #ccc; 
+            z-index: 999; /* 确保弹窗广告在其他内容上方显示 */
+        }
+
+        /* 网页内容容器样式 */
+        .content {
+            margin: 0 auto;
+            padding: 20px;
+            width: 50%; /* 设置内容区域宽度 */
+            height: 1500px;
+            background-color: #b1b1b1;
+            border: 2px solid #ccc;
+        }
+
+        /* 弹窗广告动画效果 */
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+            }
+            to {
+                opacity: 1;
+            }
+        }
+
+        @keyframes fadeout {
+            from {
+                opacity: 1;
+            }
+            to {
+                opacity: 0;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <!-- 左侧对联广告 -->
+    <div id="leftAd" class="adBanner">
+        <!-- <h3>左侧对联广告</h3> -->
+        <img src="img/ad1.png" alt="左侧广告图片" style="width: 100%; border: 2px solid #ccc; ">
+        <button onclick="closeAd('leftAd')">关闭</button>
+    </div>
+    <!-- 右侧对联广告 -->
+    <div id="rightAd" class="adBanner">
+        <img src="img/ad1.png" alt="右侧广告图片" style="width: 100%; border: 2px solid #ccc; ">
+        <button onclick="closeAd('rightAd')">关闭</button>
+    </div>
+
+    <!-- 弹窗广告 -->
+    <div id="popupAd">
+        <img src="img/ad2.png" alt="弹窗广告图片" style="width: 100%;">
+        <button onclick="closePopupAd()">关闭</button>
+    </div>
+
+    <!-- 网页内容容器 -->
+    <div class="content">
+        <h1>网页内容标题</h1>
+        <p>文章内容</p>
+    </div>
+
+    <!-- 控制广告关闭和弹窗广告动画 -->
+    <script>
+        // 设置延时使弹窗广告动画在3秒后出现
+        setTimeout(function() {
+            document.getElementById("popupAd").style.animation = "fadeIn 3s"; // 广告3s显现
+            document.getElementById("popupAd").style.opacity = 1; // 广告透明度为1
+        }, 1000);
+
+        // 弹窗广告动画在2秒后消失
+        function closePopupAd() {
+            document.getElementById("popupAd").style.animation = "fadeout 2s"; // 广告2s后消失
+            document.getElementById("popupAd").style.opacity = 0; // 广告透明度为0
+        }
+
+        // 左侧或右侧广告
+        function closeAd(adId) {
+            document.getElementById(adId).style.display = "none";
+        }
+    </script>
+</body>
+
+</html>

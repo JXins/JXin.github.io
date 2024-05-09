@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<title>让坦克开起来</title>
+		<style type="text/css">
+			input{font-size: 26px;margin-top: 20px;}
+			body{background-image: url(img/grassland.png);}
+			#mytank{position: absolute;left: 0px;top: 0px;transition: transform 0.1s;}
+		</style>
+	</head>
+	<!-- 199000136 蒋鑫 -->
+	<body>		
+		<img id="mytank" src="img/right.png"/>
+		<script>
+			// 当文档加载完成后，执行后面的函数
+			document.addEventListener('DOMContentLoaded', function () {
+				let tank = document.getElementById('mytank');
+				let tankX = 0; // 初始坦克的X坐标
+				let tankY = 0; // 初始坦克的Y坐标
+				const speed = 15; // 坦克的移动速度
+				const tankWidth = tank.offsetWidth; // 获取坦克的宽度
+				const tankHeight = tank.offsetHeight; // 获取坦克的高度
+				const viewportWidth = window.innerWidth; // 获取浏览器视口的宽度
+				const viewportHeight = window.innerHeight; // 获取浏览器视口的高度
+
+				// 判断坦克方向，并改变位置
+				function moveTank(direction) {
+					switch (direction) {
+						case 'w':
+							tank.src = "img/up.png"; // 改变方向
+							tankY = Math.max(0, tankY - speed); // 向上移动时，确保不超出上边界
+							break;
+						case 'a':
+							tank.src = "img/left.png"; // 改变方向
+							tankX = Math.max(0, tankX - speed); // 向左移动时，确保不超出左边界
+							break;
+						case 's':
+							tank.src = "img/down.png"; // 改变方向
+							tankY = Math.min(viewportHeight - tankHeight, tankY + speed); // 向下移动时，确保不超出下边界
+							break;
+						case 'd':
+							tank.src = "img/right.png"; // 改变方向
+							tankX = Math.min(viewportWidth - tankWidth, tankX + speed); // 向右移动时，确保不超出右边界
+							break;
+						default:
+							break;
+					}
+					// 改变位置
+					tank.style.transform = `translate(${tankX}px, ${tankY}px)`;
+				}
+
+				// 阻止默认右键菜单
+				document.addEventListener('contextmenu', function (event) {
+					event.preventDefault(); 
+				});
+
+				// 控制坦克移动操作（获取按键）
+				document.addEventListener('keydown', function (event) {
+					const key = event.key.toLowerCase(); // 不区分大小写
+					moveTank(key);
+				});
+			});
+		</script>
+	</body>
+</html>
