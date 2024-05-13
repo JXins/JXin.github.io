@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>jQuery动画</title>
+    <style>
+        body {
+            background-color: #000000;
+        }
+    
+        .container{
+            position: relative;
+            width: 100%;
+            height: 100vh;
+            overflow: hidden;
+        }
+
+        .player {
+            position: absolute;
+            width: 100;
+        }
+    </style>
+    <!-- 通过CDN引入jQuery库 -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script>
+        //199000136 蒋鑫
+        $(document).ready(function(){
+            $('.container').click(function(event){
+                var containerWidth = $(this).width(); // 获取容器高度
+                var containerHeight = $(this).height(); // 获取容器高度
+                var clickX = event.pageX - $(this).offset().left; // 获取点击位置的水平坐标
+                var clickY = event.pageY - $(this).offset().top; // 获取点击位置的垂直坐标
+                var image = $('.player'); // 获取图片
+                var imageWidth = image.width(); // 获取图片宽度
+                var imageHeight = image.height(); // 获取图片高度
+                var imageX = parseInt(image.css('left')); // 获取图片水平位置
+                var imageY = parseInt(image.css('top')); // 获取图片垂直位置
+
+                // 根据鼠标点击位置和图片当前位置确定移动的方向
+                var directionX = clickX > imageX ? 'right' : 'left'; // 判断水平方向的移动方向
+                var directionY = clickY > imageY ? 'down' : 'up'; // 判断垂直方向的移动方向
+
+                // 根据移动方向设置新的图片路径
+                var newImageSrc = directionX === 'left' ? 'img/gif/player_left.gif' : 'img/gif/player_right.gif';
+
+                // 更换图片
+                image.attr('src', newImageSrc);
+
+                // 计算图片应该在的水平位置
+                var newImageX = clickX - imageWidth / 2;
+
+                // 限制图片不超出容器水平范围
+                newImageX = Math.max(0, Math.min(newImageX, containerWidth - imageWidth));
+
+                // 计算图片应该在的垂直位置
+                var newImageY = clickY - imageHeight / 2;
+
+                // 限制图片不超出容器垂直范围
+                newImageY = Math.max(0, Math.min(newImageY, containerHeight - imageHeight)); // 限制图片垂直位置
+
+                // 设置图片位置（使用动画效果）
+                image.stop().animate({left: newImageX, top: newImageY}, 1500); // 同时设置水平和垂直位置
+            });
+
+            $('.player').dblclick(function(){
+                var image = $('.player'); // 获取图片
+                image.attr('src', 'img/gif/playerbig_right.gif'); //更新图片
+
+                $('.container').click(function(event){
+                var containerWidth = $(this).width(); // 获取容器高度
+                var containerHeight = $(this).height(); // 获取容器高度
+                var clickX = event.pageX - $(this).offset().left; // 获取点击位置的水平坐标
+                var clickY = event.pageY - $(this).offset().top; // 获取点击位置的垂直坐标
+                var image = $('.player'); // 获取图片
+                var imageWidth = image.width(); // 获取图片宽度
+                var imageHeight = image.height(); // 获取图片高度
+                var imageX = parseInt(image.css('left')); // 获取图片水平位置
+                var imageY = parseInt(image.css('top')); // 获取图片垂直位置
+
+                // 根据鼠标点击位置和图片当前位置确定移动的方向
+                var directionX = clickX > imageX ? 'right' : 'left'; // 判断水平方向的移动方向
+                var directionY = clickY > imageY ? 'down' : 'up'; // 判断垂直方向的移动方向
+
+                // 根据移动方向设置新的图片路径
+                var newImageSrc = directionX === 'left' ? 'img/gif/playerbig_left.gif' : 'img/gif/playerbig_right.gif';
+
+                // 更换图片
+                image.attr('src', newImageSrc);
+
+                // 计算图片应该在的水平位置
+                var newImageX = clickX - imageWidth / 2;
+
+                // 限制图片不超出容器水平范围
+                newImageX = Math.max(0, Math.min(newImageX, containerWidth - imageWidth));
+
+                // 计算图片应该在的垂直位置
+                var newImageY = clickY - imageHeight / 2;
+
+                // 限制图片不超出容器垂直范围
+                newImageY = Math.max(0, Math.min(newImageY, containerHeight - imageHeight)); // 限制图片垂直位置
+
+                // 设置图片位置（使用动画效果）
+                image.stop().animate({left: newImageX, top: newImageY}, 1500); // 同时设置水平和垂直位置
+            });
+            });
+        });
+    </script>
+</head>
+
+<body>
+    <div class="container">
+        <img class="player" src="img/gif/player_right.gif" alt="right_image">
+    </div>
+</body>
+</html>
