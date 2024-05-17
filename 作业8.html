@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>轮播图展示</title>
+<meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1">
+<script src="https://www.jq22.com/jquery/jquery-1.10.2.js"></script>
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+<div class="main">
+
+    <div class="bannerPc banner-osSlider">
+        <ul>
+            <li><a href="#"><img src="img/lunbo1.png" alt="" title=""/></a> </li>
+            <li><a href="#"><img src="img/lunbo2.png" alt="" title=""/></a> </li>
+            <li><a href="#"><img src="img/lunbo3.png" alt="" title=""/> </a></li>
+            <li><a href="#"><img src="img/lunbo4.png" alt="" title=""/> </a></li>
+            <li><a href="#"><img src="img/lunbo5.png" alt="" title=""/></a> </li>
+        </ul>
+    </div>
+    <script type="text/javascript" src="js/osSlider.js"></script> 
+    <script type="text/javascript">
+		$(function () {
+		var container = $('.banner-osSlider');
+		var lunboImages = container.find('img');
+		var img = new Image();
+		img.onload = function(){
+			var sliderOS = new osSlider({ //开始创建效果
+			pNode: container, //容器的选择器
+			cNode: 'ul li',
+			speed: 4000, //展示时间
+			speedRun: 1000, //切换速度
+			autoPlay: true
+			});
+		}
+		img.src = lunboImages.attr("src");
+	});
+    </script> 
+
+    <div style="height:100px"></div>
+</div>
+</body>
+</html>
