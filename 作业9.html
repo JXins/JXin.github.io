@@ -1,0 +1,395 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>用户注册</title>
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="keywords" content="HTML,CSS,XML,JavaScript">
+  <meta charset="utf-8" />
+  <style type="text/css">
+		/* 设置全局字体样式 */
+		body{
+			font: 14px/28px "微软雅黑"; /* 设置字体大小为 14px，行高为 28px，并使用"微软雅黑"字体 */
+			background-color: #f0f0f0;
+			margin: 0;
+			padding: 0;
+			overflow: hidden;
+			display: flex;
+			justify-content: center;
+			align-items: center;
+			height: 100vh;
+			background-image: url('img/lunbo1.png');
+			background-size: cover; /* 背景图片尺寸自适应 */
+			background-position: center; /* 图片位置居中 */
+			background-repeat: no-repeat; /* 不重复平铺 */
+		}
+
+		/* 去除 .contact 元素内所有子元素的焦点状态下的默认外边框样式 */
+		.contact *:focus {
+			outline: none;
+		}
+
+		/* 设置联系表单整体样式 */
+		.contact {
+			width: 50%; /* 设置宽度为屏幕宽度的一半 */
+			max-width: 600px; /* 最大宽度为 600px */
+			height: auto; /* 让高度自适应内容高度 */
+			background-color: rgba(255, 255, 255, 0.7); /* 设置背景颜色为浅灰色 */
+			position: absolute; /* 使用绝对定位 */
+			top: 50%; /* 顶部距离为页面高度的一半 */
+			left: 50%; /* 左侧距离为页面宽度的一半 */
+			transform: translate(-50%, -50%); /* 使用transform将元素向左上方移动自身宽高的一半，实现居中 */
+			padding: 10px; /* 设置内边距为 10px */
+			border-radius: 10px; /* 设置边框圆角为 10px */
+		}
+
+		/* 设置联系表单标题样式 */
+		.contact h1 {
+			text-align: center; /* 文本居中显示 */
+			font-family: Arial, sans-serif; /* 设置字体族为 Arial 和 sans-serif 字体 */
+			color: #241d1d; /* 设置文本颜色为深灰色 */
+		}
+
+		/* 设置联系表单内容列表样式 */
+		.contact ul {
+			width: 650px; /* 设置宽度为 650px */
+			margin: 0 auto; /* 左右居中对齐 */
+		}
+
+		/* 设置联系表单每一项样式 */
+		.contact ul li{
+			/* border-bottom: 1px solid #dfdfdf; */
+			list-style: none; /* 取消列表标记 */
+			padding: 12px; /* 设置内边距为 12px */
+		}
+
+		/* 设置联系表单每一项标签样式 */
+		.contact ul li label{
+			width: 100px; /* 设置宽度为 100px */
+			display: inline-block; /* 将标签元素设为行内块元素 */
+			/* float: left; */
+		}
+
+		/* 设置联系表单输入框样式 */
+		.contact ul li input[type=text],
+		.contact ul li input[type=password]{
+			width: 220px; /* 设置宽度为 220px */
+			height: 25px; /* 设置高度为 25px */
+			border: 1px solid #aaa; /* 设置边框为 1px 实线灰色 */
+			padding: 3px 8px; /* 设置上下内边距为 3px，左右内边距为 8px */
+			border-radius: 5px; /* 设置边框圆角为 5px */
+		}
+
+		/* 设置输入框获得焦点时的样式 */
+		.contact ul li input:focus{
+			border-color: #c00; /* 边框颜色为红色 */
+			padding-right: 20px; /* 输入框右侧内边距增加至 20px */
+		}
+
+		/* 设置输入框的过渡效果 */
+		.contact ul li input[type=text],
+		.contact ul li input[type=password]{
+			transition: padding .25s; /* 设置 padding 属性变化的过渡效果，持续时间为 0.25 秒 */
+			-o-transition: padding .25s; /* Opera 浏览器下的过渡效果 */
+			-moz-transition: padding .25s; /* Firefox 浏览器下的过渡效果 */
+			-webkit-transition: padding .25s; /* WebKit 内核浏览器下的过渡效果 */
+		}
+
+		/* 设置按钮样式 */
+		.btn{
+			text-align: center;
+			padding: 20px; /* 设置内边距为 20px */
+			display: block; /* 将按钮显示为块级元素，以便设置水平居中对齐 */
+		}
+
+		.btn input[type=submit] {
+			margin-right:90px; /* 水平居中对齐 */
+			/* margin: 150px; */
+			width: 100px;
+			height: 50px;
+			background-color: rgb(255, 255, 255);
+			border:2px solid #b7b7b7;
+		}
+
+		.btn input[type=reset] {
+			margin-left:90px; /* 水平居中对齐 */
+			/* margin: 150px; */
+			width: 100px;
+			height: 50px;
+			background-color: rgb(255, 255, 255);
+			border:2px solid #b7b7b7;
+		}
+
+		.btn input:hover {
+			background-color: rgb(168, 168, 168);
+		}
+
+		/* 设置提示信息样式 */
+		.tips{
+			color: rgba(0, 0, 0, 0.5); /* 设置文字颜色为带有 50% 透明度的黑色 */
+			padding-left: 10px; /* 设置左侧内边距为 10px */
+		}
+
+		/* 设置正确提示信息样式 */
+		.tips_true{
+			padding-left: 10px; /* 继承上级元素样式，设置左侧内边距为10px */
+			color: green; /* 设置文字颜色为绿色 */
+		}
+
+		/* 设置错误提示信息样式 */
+		.tips_false{
+			padding-left: 10px; /* 继承上级元素样式，设置左侧内边距为 10px */
+			color: red; /* 设置文字颜色为红色 */
+		}
+    </style>
+
+</head>
+
+<body>
+	<canvas id="myCanvas"></canvas>
+	<div class="contact" >
+		<h1>用户注册</h1>
+		<form name="form1" method="get" action="/myweb/test.html">
+			<ul>
+				<li>
+					<label>用户名：</label>
+					<input type="text" name="yourname" placeholder="请输入用户名"  onblur="checkna()" required/>
+					<span class="tips" id="divname">长度5~12个字符</span>
+				</li>
+
+				<li>
+					<label>密码：</label>
+					<input type="password" name="yourpass" placeholder="请输入你的密码" onblur="checkpsd1()" required/>
+					<span class="tips" id="divpassword1">密码必须由字母和数字组成</span>
+				</li>
+
+				<li>
+					<label>确认密码：</label>
+					<input type="password" name="yourpass2" placeholder="请再次输入你的密码" onblur="checkpsd2()" required/>
+					<span class="tips" id="divpassword2">两次密码需要相同</span>
+				</li>
+
+				<li>
+					<label>电子邮箱：</label>
+					<input type="text" name="youremail" placeholder="请输入你的邮箱" onblur="checkmail()" required/>
+					<span class="tips" id="divmail">邮箱需用户名、@符号和域名</span>
+				</li>
+
+				<li>
+					<label>手机号码：</label>
+					<input type="text" name="yourphone" placeholder="请输入你的手机号码" onblur="checkphone()" required/>
+					<span class="tips" id="divphone">手机号码需为11位数字</span>
+				</li>
+
+			</ul>
+			
+			<div class="btn">
+				<input type="submit" value="提交"/>
+				<input type="reset" value="重置"/>
+			</div>
+		</form>
+	</div>
+
+	<script type="text/javascript">
+		// 验证用户名
+		function checkna(){
+			na = form1.yourname.value; // 获取用户名输入值
+			if (na.length < 5 || na.length > 12) { // 检查用户名长度是否在1到12个字符之间
+				divname.innerHTML = '<font class="tips_false">长度是5~12个字符</font>'; // 在相应的div中显示错误提示
+			} else {  
+				divname.innerHTML = '<font class="tips_true">输入正确</font>'; // 在相应的div中显示正确提示
+			}  
+		}
+
+		// 验证密码
+		function checkpsd1(){
+			psd1 = form1.yourpass.value; // 获取密码输入值
+			var flagZM = false; // 字母标志位
+			var flagSZ = false; // 数字标志位
+			var flagQT = false; // 其他字符标志位
+			if (psd1.length < 6 || psd1.length > 12){ // 检查密码长度是否在6到12个字符之间
+				divpassword1.innerHTML = '<font class="tips_false">长度错误</font>'; // 在相应的div中显示错误提示
+			} else {
+				for (i = 0; i < psd1.length; i++){
+					if ((psd1.charAt(i) >= 'A' && psd1.charAt(i) <= 'Z') || (psd1.charAt(i) >= 'a' && psd1.charAt(i) <= 'z')) {
+						flagZM = true; // 如果是字母，设置字母标志位为true
+					} else if (psd1.charAt(i) >= '0' && psd1.charAt(i) <= '9') {
+						flagSZ = true; // 如果是数字，设置数字标志位为true
+					} else {
+						flagQT = true; // 如果是其他字符，设置其他字符标志位为true
+					}
+				}
+				if (!flagZM || !flagSZ || flagQT){ // 如果密码不是字母数字的组合
+					divpassword1.innerHTML = '<font class="tips_false">密码必须是字母数字的组合</font>'; // 在相应的div中显示错误提示
+				} else {			
+					divpassword1.innerHTML = '<font class="tips_true">输入正确</font>'; // 在相应的div中显示正确提示
+				}
+			}	
+		}
+
+		// 验证确认密码
+		function checkpsd2(){
+			if(form1.yourpass.value === ''){
+				divpassword2.innerHTML = '<font class="tips_false">密码为空</font>'; // 在相应的div中显示错误提示
+			}else if(form1.yourpass.value != form1.yourpass2.value) { // 检查确认密码是否与密码相同
+				divpassword2.innerHTML = '<font class="tips_false">您两次输入的密码不一样</font>'; // 在相应的div中显示错误提示
+			} else {
+				divpassword2.innerHTML = '<font class="tips_true">输入正确</font>'; // 在相应的div中显示正确提示
+			}
+		}
+
+		// 验证邮箱
+		function checkmail(){
+			apos = form1.youremail.value.indexOf("@"); // 检查邮箱中@符号的位置
+			dotpos = form1.youremail.value.lastIndexOf("."); // 检查邮箱中最后一个.的位置
+			if (apos < 1 || dotpos - apos < 2) { // 检查邮箱是否合法
+				divmail.innerHTML = '<font class="tips_false">无效邮箱</font>'; // 在相应的div中显示错误提示
+			} else {
+				divmail.innerHTML = '<font class="tips_true">输入正确</font>'; // 在相应的div中显示正确提示
+			}
+		}
+
+		// 验证手机号码
+		function checkphone(){
+			phoneNumber = form1.yourphone.value; // 获取手机号码输入值
+			let phoneNumberRegex = /^\d{11}$/; // 定义匹配11位数字的正则表达式
+			if (!phoneNumber.match(phoneNumberRegex)) { // 检查手机号码是否匹配正则表达式
+				divphone.innerHTML = '<font class="tips_false">无效手机号</font>'; // 在相应的div中显示错误提示
+			} else {
+				divphone.innerHTML = '<font class="tips_true">输入正确</font>'; // 在相应的div中显示正确提示
+			}
+		}
+		console.log("lizi front");
+		//粒子特效
+		const canvas = document.getElementById("myCanvas");
+		const ctx = canvas.getContext("2d");
+		const width = window.innerWidth;
+		const height = window.innerHeight;
+	
+		canvas.width = width;
+		canvas.height = height;
+	
+		const particles = [];
+		const connections = [];
+		const particleCount = 300;
+		const particleSpeed = 1;
+		const particleSize = 2;
+		const maxDistance = 100;
+		const lightningColor = "#fff";
+	
+		class Particle {
+		constructor() {
+			this.x = Math.random() * width;
+			this.y = Math.random() * height;
+			this.color = "#fff";
+			this.angle = Math.random() * 360;
+			this.speed = Math.random() * particleSpeed;
+			this.opacity = Math.random() * 0.5 + 0.5;
+		}
+	
+		update() {
+			this.x += Math.cos(this.angle) * this.speed;
+			this.y += Math.sin(this.angle) * this.speed;
+	
+			if (this.x < 0 || this.x > width || this.y < 0 || this.y > height) {
+			this.x = Math.random() * width;
+			this.y = Math.random() * height;
+			}
+		}
+	
+		draw() {
+			ctx.beginPath();
+			ctx.arc(this.x, this.y, particleSize, 0, Math.PI * 2);
+			ctx.fillStyle = `rgba(255, 255, 255, ${this.opacity})`;
+			ctx.fill();
+		}
+		}
+	
+		function createParticles() {
+		for (let i = 0; i < particleCount; i++) {
+			particles.push(new Particle());
+		}
+		}
+	
+		function drawConnections() {
+		for (let i = 0; i < particles.length; i++) {
+			for (let j = i + 1; j < particles.length; j++) {
+			const dx = particles[i].x - particles[j].x;
+			const dy = particles[i].y - particles[j].y;
+			const distance = Math.sqrt(dx * dx + dy * dy);
+	
+			if (distance < maxDistance) {
+				ctx.beginPath();
+				ctx.moveTo(particles[i].x, particles[i].y);
+				ctx.lineTo(particles[j].x, particles[j].y);
+				ctx.strokeStyle = lightningColor;
+				ctx.lineWidth = 0.2 * (1 - distance / maxDistance);
+				ctx.stroke();
+				ctx.closePath();
+			}
+			}
+		}
+		}
+	
+		function animate() {
+		ctx.clearRect(0, 0, width, height);
+	
+		for (const particle of particles) {
+			particle.update();
+			particle.draw();
+		}
+	
+		drawConnections();
+	
+		requestAnimationFrame(animate);
+		}
+	
+		document.addEventListener("mousemove", (e) => {
+		const mouseX = e.clientX;
+		const mouseY = e.clientY;
+	
+		for (const particle of particles) {
+			const dx = mouseX - particle.x;
+			const dy = mouseY - particle.y;
+			const distance = Math.sqrt(dx * dx + dy * dy);
+	
+			if (distance < maxDistance) {
+			particle.angle = Math.atan2(dy, dx);
+			particle.speed = 5;
+			} else {
+			particle.speed = Math.random() * particleSpeed;
+			}
+		}
+		});
+	
+		createParticles();
+		animate();
+  	</script>
+    <script>
+        nameinput = form1.yourname.value;
+        nameinput.addEventListener("blur", function() {
+            var xhr = new XMLHttpRequest( );
+            var url = "https://mock.apifox.com/m1/2785321-O-default/hasName";
+            url +="?username="+nameinput.value;
+
+            xhr.open("GET",url, true);
+            xhr.send();
+            xhr.onreadystatechange = function( ) {
+                if (xhr.readyState === 4 && xhr.status ===200){
+                    var result = xhr.responseText;
+                    
+                    if(result=="1"){
+                        nameinput.nextSibling.nextSibling.innerHTML ="用户名已存在";
+                    }else{
+                        nameinput.nextSibling.nextSibling.innerHTML = "ok" ;
+                    }
+                }
+            }
+            }
+        )
+    </script>
+</body>
+</html>
+
+
+
