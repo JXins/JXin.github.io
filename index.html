@@ -99,8 +99,8 @@ h1 {
 		//粒子特效
 		const canvas = document.getElementById("myCanvas");
 		const ctx = canvas.getContext("2d");
-		let width = document.body.clientWidth;
-		let height = document.body.clientHeight; // 使用文档的实际高度而非窗口高度
+		let width = document.documentElement.scrollWidth;
+		let height = document.documentElement.scrollHeight; // 使用文档的实际高度而非窗口高度
 		
 		canvas.width = width;
 		canvas.height = height;
