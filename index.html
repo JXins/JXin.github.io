@@ -100,7 +100,7 @@ h1 {
 		const canvas = document.getElementById("myCanvas");
 		const ctx = canvas.getContext("2d");
 		let width = window.innerWidth;
-		let height = document.body.clientHeight; // 使用文档的实际高度而非窗口高度
+		let height = window.innerheight; // 使用文档的实际高度而非窗口高度
 		
 		canvas.width = width;
 		canvas.height = height;
@@ -108,7 +108,7 @@ h1 {
 		// 在窗口大小改变时和页面滚动时更新画布尺寸
 		function resizeCanvas() {
 		    width = window.innerWidth;
-		    height = document.body.clientHeight;
+		    height = window.innerHeight;
 		    canvas.width = width;
 		    canvas.height = height;
 		}
