@@ -99,22 +99,11 @@ h1 {
 		//粒子特效
 		const canvas = document.getElementById("myCanvas");
 		const ctx = canvas.getContext("2d");
-		let width = window.innerWidth;
-		let height = window.innerheight; // 使用文档的实际高度而非窗口高度
+		let width = document.body.clientWidth;
+		let height = document.body.clientHeight; // 使用文档的实际高度而非窗口高度
 		
 		canvas.width = width;
 		canvas.height = height;
-		
-		// 在窗口大小改变时和页面滚动时更新画布尺寸
-		function resizeCanvas() {
-		    width = window.innerWidth;
-		    height = window.innerHeight;
-		    canvas.width = width;
-		    canvas.height = height;
-		}
-		
-		window.addEventListener('resize', resizeCanvas);
-		window.addEventListener('scroll', resizeCanvas);
 		
 		const particles = [];
 		const connections = [];
